@@ -2,5 +2,43 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafbfc;
+  background-color: #0b0d10;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: #0b0d10;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(18, 22, 28, 0.95);
+  border-bottom: 1px solid rgba(255, 108, 0, 0.2);
+}
+
+.app-nav button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.app-nav button:hover {
+  color: #ff9f43;
+  border-color: rgba(255, 108, 0, 0.4);
+}
+
+.app-nav button.active {
+  background: rgba(255, 108, 0, 0.2);
+  color: #ff8e3c;
+  border-color: rgba(255, 108, 0, 0.6);
 }
