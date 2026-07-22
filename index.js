@@ -192,14 +192,15 @@ app.post("/whatsapp", async (req, res) => {
     // Increment message count
     await incrementMessageCount(From);
 
+    const twiml = new twilio.twiml.MessagingResponse();
+
     // --- Command: Menu reset ---
     if (/^menu$|^mode$/i.test(text)) {
       await setUserMode(From, null);
-      await sendWhatsApp({
-        to: From,
-        text: "Please choose a module by replying with the number:\n\n1️⃣ Ingest asset documents / drawings\n2️⃣ Query industrial knowledge base (RAG)\n3️⃣ Compliance & General Industry QA\n4️⃣ Schedule maintenance & inspections",
-      });
-      return res.sendStatus(200);
+      const msg = "Please choose a module by replying with the number:\n\n1️⃣ Ingest asset documents / drawings\n2️⃣ Query industrial knowledge base (RAG)\n3️⃣ Compliance & General Industry QA\n4️⃣ Schedule maintenance & inspections";
+      twiml.message(msg);
+      res.type("text/xml");
+      return res.send(twiml.toString());
     }
 
     // --- Mode selection logic ---
@@ -209,7 +210,7 @@ app.post("/whatsapp", async (req, res) => {
         let welcomeMsg = "";
         switch (text) {
           case "1":
-            welcomeMsg = "📂 You are now in Mode 1: Ingest asset documents / drawings. Upload files/drawings or paste text to index them into ChromaDB.";
+            welcomeMsg = "📂 You are now in Mode 1: Ingest asset documents / drawings. Upload files/drawings or paste text to index them.";
             break;
           case "2":
             welcomeMsg = "🔍 You are now in Mode 2: Query industrial knowledge base. Send your operational query and I will fetch context to answer with citations.";
@@ -221,14 +222,14 @@ app.post("/whatsapp", async (req, res) => {
             welcomeMsg = "⏱️ You are now in Mode 4: Maintenance & Inspections. Schedule calibration, overhaul, or inspection checkups for plant equipment.";
             break;
         }
-        await sendWhatsApp({ to: From, text: welcomeMsg });
-        return res.sendStatus(200);
+        twiml.message(welcomeMsg);
+        res.type("text/xml");
+        return res.send(twiml.toString());
       } else {
-        await sendWhatsApp({
-          to: From,
-          text: "Welcome to Industrial Asset Brain! Please choose a module by replying with the number:\n\n1️⃣ Ingest asset documents / drawings\n2️⃣ Query industrial knowledge base (RAG)\n3️⃣ Compliance & General Industry QA\n4️⃣ Schedule maintenance & inspections\n\n(Reply 'menu' at any time to return to this screen).",
-        });
-        return res.sendStatus(200);
+        const welcomeText = "Welcome to Industrial Asset Brain! Please choose a module by replying with the number:\n\n1️⃣ Ingest asset documents / drawings\n2️⃣ Query industrial knowledge base (RAG)\n3️⃣ Compliance & General Industry QA\n4️⃣ Schedule maintenance & inspections\n\n(Reply 'menu' at any time to return to this screen).";
+        twiml.message(welcomeText);
+        res.type("text/xml");
+        return res.send(twiml.toString());
       }
     }
 
