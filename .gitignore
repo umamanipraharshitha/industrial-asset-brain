@@ -1,0 +1,16 @@
+# Environment variables
+.env
+
+# Google Service Account Key
+*.json
+
+# Optional: Ignore local node modules
+node_modules/
+
+# Optional: Logs
+logs/
+*.log
+.env
+.env.local
+.env.*
+node_modules/

@@ -1,0 +1,379 @@
+/* dashboard/src/components/OperationsAssistant.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+.operations-assistant {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(18, 22, 28, 0.95);
+  border: 1px solid rgba(255, 108, 0, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 108, 0, 0.05);
+  color: #e2e8f0;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.operations-assistant::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 108, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ha-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(255, 108, 0, 0.2);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  z-index: 1;
+  position: relative;
+}
+
+.title-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #ff8e3c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ha-subtitle {
+  color: #a0aec0;
+  margin: 6px 0 0 0;
+  font-size: 0.95rem;
+}
+
+.ha-status {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 15, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.ha-status.online {
+  border-color: rgba(0, 229, 255, 0.3);
+  color: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+}
+
+.ha-status.offline {
+  border-color: rgba(229, 62, 62, 0.3);
+  color: #feb2b2;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00e5ff;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+  box-shadow: 0 0 8px #00e5ff;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.ha-status.offline .pulse-dot {
+  background-color: #f56565;
+  box-shadow: 0 0 8px #f56565;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.ha-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.ha-tabs button {
+  background: rgba(30, 36, 45, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #a0aec0;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.ha-tabs button:hover {
+  background: rgba(255, 108, 0, 0.1);
+  color: #ff9f43;
+  border-color: rgba(255, 108, 0, 0.3);
+}
+
+.ha-tabs button.active {
+  background: linear-gradient(135deg, rgba(255, 108, 0, 0.2) 0%, rgba(255, 108, 0, 0.05) 100%);
+  color: #ff8e3c;
+  border: 1px solid rgba(255, 108, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 108, 0, 0.1);
+}
+
+.ha-panel {
+  background: rgba(10, 13, 16, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ha-panel h2 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ff8e3c;
+}
+
+.section-desc {
+  color: #a0aec0;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+textarea {
+  width: 100%;
+  background: rgba(20, 26, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f7fafc;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 0.95rem;
+  font-family: 'JetBrains Mono', monospace;
+  resize: vertical;
+  margin-bottom: 15px;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  border-color: rgba(255, 108, 0, 0.5);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 108, 0, 0.15);
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #ff6c00 0%, #ff8e3c 100%);
+  border: none;
+  color: #ffffff;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255, 108, 0, 0.4);
+}
+
+.action-btn:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.ha-feedback {
+  margin-top: 15px;
+  padding: 12px 18px;
+  background: rgba(255, 108, 0, 0.05);
+  border: 1px dashed rgba(255, 108, 0, 0.2);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.ha-chat {
+  height: 380px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(5, 7, 10, 0.6);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ha-hint {
+  text-align: center;
+  color: #718096;
+  margin: auto;
+  max-width: 450px;
+}
+
+.ha-hint p {
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #a0aec0;
+}
+
+.ha-hint ul {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ha-hint li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  color: #718096;
+}
+
+.ha-bubble {
+  max-width: 80%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  animation: slide-up 0.25s ease-out;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.ha-bubble.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, rgba(255, 108, 0, 0.15) 0%, rgba(255, 108, 0, 0.05) 100%);
+  border: 1px solid rgba(255, 108, 0, 0.3);
+  border-bottom-right-radius: 2px;
+}
+
+.ha-bubble.assistant {
+  align-self: flex-start;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom-left-radius: 2px;
+}
+
+.bubble-sender {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.user .bubble-sender {
+  color: #ff9f43;
+  text-align: right;
+}
+
+.assistant .bubble-sender {
+  color: #00e5ff;
+}
+
+.bubble-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.assistant .bubble-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.ha-input-row {
+  display: flex;
+  gap: 12px;
+}
+
+.ha-input-row input {
+  flex: 1;
+  background: rgba(20, 26, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.3s;
+}
+
+.ha-input-row input:focus {
+  outline: none;
+  border-color: rgba(255, 108, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255, 108, 0, 0.15);
+}
+
+.action-btn-short {
+  background: linear-gradient(135deg, #ff6c00 0%, #ff8e3c 100%);
+  border: none;
+  color: #ffffff;
+  padding: 0 24px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.action-btn-short:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(255, 108, 0, 0.4);
+}
+
+.ha-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.ha-footer code {
+  color: #ff9f43;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
